@@ -1,0 +1,7 @@
+footer>div>*{
+    margin-top: 10px;
+    cursor: pointer;
+}
+footer>div>*:hover{
+    opacity: 1;
+}

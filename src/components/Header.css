@@ -1,0 +1,12 @@
+.logo__image{
+    align-items: flex-start;
+}
+.logo__image>h1{
+    background-color: #f3ec78;
+    background-image: linear-gradient(to right, rgb(0,0,200,0.4), #af4261);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+
+}

@@ -4,10 +4,7 @@ import {useState} from "react";
 import useSWR from "swr";
 import Loading from "../components/Loading.tsx";
 
-interface Props{
-    id:number
-}
-const DescriptionPage =(id: Props)=>{
+const DescriptionPage =()=>{
     const[aboutProject,setAboutProject] =useState<string[]>([])
     const BASE_URL =""
     const ENDPOINT =`${id}`
