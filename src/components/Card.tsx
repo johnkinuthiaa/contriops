@@ -1,12 +1,19 @@
+import {useNavigate} from "react-router";
+
 interface cardProps{
-    title:string,
+    title:string
     details:string
     stars:number
     topic:string
+    id:number
 }
 const Card =(props:cardProps)=>{
+    const navigate =useNavigate()
+
     return(
-        <div className={"card w-96 h-96 rounded-xl bg-gray-300 flex flex-col text-black font-bold text-2xl p-3"}>
+        <div className={"card w-96 h-96 rounded-xl bg-gray-300 flex flex-col text-black font-bold text-2xl p-3"}
+             onClick={()=>navigate(`/description/${props.id}`)}
+        >
             <div className={"flex"}>
                 <img alt={"p"} className={"h-8 w-8 rounded-xl"}/>
                 <h2 className={"ml-3"}>{props.title}</h2>
