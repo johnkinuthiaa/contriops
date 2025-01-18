@@ -1,6 +1,4 @@
-import Contributors from "../components/Contributors.tsx";
-import MidDesc from "../components/MidDesc.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import useSWR from "swr";
 import Loading from "../components/Loading.tsx";
 import {Octokit} from "@octokit/rest";
@@ -17,7 +15,11 @@ const DescriptionPage =()=>{
     const[reposUrl,setReposUrl] =useState<string>("")
     const[repos,setRepos] =useState<string[]>([])
 
-    const ENDPOINT ="nodejs"
+    useEffect(()=>{
+        fetchOrgRepos()
+    },[aboutProject])
+
+    const ENDPOINT ="netflix"
     const BASE_URL =`/org/${ENDPOINT}`
     const descPage={
         margin:"0 auto",
@@ -33,12 +35,14 @@ const DescriptionPage =()=>{
             org: ENDPOINT,
             headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
-            }
+            },
+            per_page:100
         })
         const data = results.data
         setAboutProject(data)
+        console.log(data)
         setReposUrl(data.repos_url)
-        fetchOrgRepos()
+
     })
     const fetchOrgRepos =(async ()=>{
         const response =await fetch(reposUrl,{
@@ -55,6 +59,7 @@ const DescriptionPage =()=>{
     const {isLoading,error} =useSWR(BASE_URL,fetchProjectInfo)
     if(isLoading)return <Loading/>
     if(error) return <div className={"text-red-600 animate-bounce flex  item-center w-30 font-bold"}>Error fetching data</div>
+
 
     return(
         <div className={"shadow-2xl flex flex-col"} style={descPage}>
@@ -93,24 +98,31 @@ const DescriptionPage =()=>{
                     </button>
                 </div>
             </div>
-            <div className={"mt-5 p-2 flex flex-col"}>
+            <section className={"mt-5 p-2 flex flex-col"}>
                 <h2 className={"text-lg font-bold "}>{aboutProject.login} Projects:</h2>
                 <div className={"flex flex-wrap"}>
                     {repos.map((repo)=>(
-                        <div className={"cursor-pointer flex gap-3 mt-1 shadow-2xl rounded-2xl p-3 w-1/3 h-60"}>
-                            <div>
-                                <img src={aboutProject.avatar_url} className={"w-28 h-28 object-cover rounded-2xl mr-3"}/>
-                            </div>
-                            <div className={"flex flex-col ml-3"}>
-                                <h2 className={"flex flex-col text-lg font-bold"}>Name:<span className={"text-lg font-bold"}> {repo.full_name}</span></h2>
-                                <p className={"mt-2"}>{repo.description}</p>
+                        <div className={"flex flex-col cursor-pointer gap-3 mt-3 shadow-2xl rounded-lg p-3 w-1/3 h-max min-h-72 mb-3"}>
+                            <div className={"flex"}>
+                                <div>
+                                    <img src={aboutProject.avatar_url} className={"w-28 h-28 rounded-2xl mr-3"}/>
+                                </div>
+                                <div className={"flex flex-col ml-3"}>
+                                    <h2 className={"flex flex-col text-lg font-bold"}>Name:
+                                        <a href={repo.html_url} target={"_blank"}><span
+                                            className={"text-lg font-bold decoration-1 underline"}> {repo.full_name}</span>
+                                        </a>
+                                    </h2>
+                                    <p>Owner:{repo.owner.login}</p>
+                                    <p>Fork:{repo.fork}</p>
 
+                                </div>
                             </div>
-
+                            <div className={"p-2"}>{repo.description}</div>
                         </div>
                     ))}
                 </div>
-            </div>
+            </section>
 
         </div>
 
