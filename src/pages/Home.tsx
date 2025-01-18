@@ -10,7 +10,6 @@ const Home =()=>{
     const[searchTerm,setSearchTerm] =useState<string>("")
     const[projects,setProjects] =useState<string[]>([])
     const[language,setLanguage] =useState<string>("")
-
     const BASE_URL =""
     const SEARCH_ENDPOINT =`${searchTerm}`
     const languages:string[] =["all","java","javaScript","TypeScript","python","GO","sql"]
