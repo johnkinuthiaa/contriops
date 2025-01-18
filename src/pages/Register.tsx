@@ -1,6 +1,5 @@
 import {Link, useNavigate} from "react-router";
 import {useState} from "react";
-import Loading from "../components/Loading.tsx";
 
 const Register =()=>{
     const [username,setUsername] =useState<string>("")
@@ -9,6 +8,7 @@ const Register =()=>{
     const [error,setError] =useState<string>("")
     const [confirmPassword,setConfirmPassword] =useState<string>("")
     const[pLoading,setPLoading] =useState<boolean>(false)
+    const ENDPOINT ="/register"
 
     const navigate =useNavigate()
 
@@ -16,8 +16,8 @@ const Register =()=>{
     myHeaders.append("Content-Type","application/json")
     const submitDetails =(async ()=>{
 
-        const response =await fetch("",{
-            method:"POST",
+        const response =await fetch(import.meta.env.VITE_LOGIN_URL+ENDPOINT,{
+            method:"PUT",
             body:JSON.stringify({
                 username:{username},
                 email:{email},
@@ -27,7 +27,10 @@ const Register =()=>{
         })
         if(response.ok){
             const data =await response.json()
-            navigate("/home")
+            if(data.statusCode==200){
+                navigate("/home")
+                localStorage.setItem("jwt-token",JSON.stringify(data.jwtToken))
+            }
 
             console.log(data)
         }

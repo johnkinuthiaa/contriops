@@ -10,17 +10,19 @@ const Login =()=>{
     const[pLoading,setPLoading] =useState<boolean>(false)
 
     const navigate =useNavigate()
+    const ENDPOINT:string ="/login"
+
 
     const myHeaders =new Headers()
     myHeaders.append("Content-Type","application/json")
     const submitDetails =(async ()=>{
 
-        const response =await fetch("",{
-            method:"POST",
+        const response =await fetch(import.meta.env.VITE_LOGIN_URL+ENDPOINT,{
+            method:"PUT",
             body:JSON.stringify({
-                username:{username},
-                email:{email},
-                password:{password}
+                username:`${username}`,
+                email:`${email}`,
+                password:`${password}`
             }),
             headers:myHeaders
         })
