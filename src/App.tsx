@@ -5,6 +5,7 @@ import DescriptionPage from "./pages/DescriptionPage.tsx";
 import Login from "./pages/Login.tsx";
 import Register from "./pages/Register.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
+import Octo from "./test/Octo.jsx";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Route path={"/signUp"} element={<Register/>}/>
               <Route path={"/*"} element={<ErrorPage/>}/>
           </Routes>
+          {/*<Octo/>*/}
       </div>
 
   )

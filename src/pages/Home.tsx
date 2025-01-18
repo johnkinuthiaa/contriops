@@ -3,6 +3,7 @@ import useSWR from "swr";
 import Loading from "../components/Loading.tsx";
 import Card from "../components/Card.tsx";
 import Footer from "../components/Footer.tsx";
+import { Octokit } from "@octokit/rest";
 
 
 
@@ -13,6 +14,9 @@ const Home =()=>{
     const BASE_URL =""
     const SEARCH_ENDPOINT =`${searchTerm}`
     const languages:string[] =["all","java","javaScript","TypeScript","python","GO","sql"]
+    const octokit = new Octokit({
+        auth: import.meta.env.VITE_PERSONAL_ACCESS_TOKEN,
+    });
 
     const home ={
         margin:"0 auto",
@@ -65,7 +69,7 @@ const Home =()=>{
         return <div> Error fetching data</div>
     }
     return(
-        <div className={"flex-col gap-1.5 items-center m-0 align-middle justify-center w-4/5 "} style={home}>
+        <div className={"flex-col gap-1.5 items-center m-0 align-middle justify-center w-4/5"} style={home}>
             <main className={"rounded-xl p-2"}>
                 <div className={"hero text-center flex align-middle justify-center"}>
                     <h1 className={"text-5xl font-bold mt-6 w-1/2 "}>The place to find and contribute to open source
