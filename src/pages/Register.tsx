@@ -17,11 +17,11 @@ const Register =()=>{
     const submitDetails =(async ()=>{
 
         const response =await fetch(import.meta.env.VITE_LOGIN_URL+ENDPOINT,{
-            method:"PUT",
+            method:"POST",
             body:JSON.stringify({
-                username:{username},
-                email:{email},
-                password:{password}
+                username:username,
+                email:email,
+                password:password
             }),
             headers:myHeaders
         })
@@ -29,7 +29,8 @@ const Register =()=>{
             const data =await response.json()
             if(data.statusCode==200){
                 navigate("/home")
-                localStorage.setItem("jwt-token",JSON.stringify(data.jwtToken))
+            }else {
+                return
             }
 
             console.log(data)
@@ -44,8 +45,8 @@ const Register =()=>{
             setPLoading(false)
             return
         }
-        const regex= ""
-        if(!email.match(regex)){
+
+        if(!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)){
             setTimeout(()=>{
                 setError("")
             },2000)
@@ -57,9 +58,9 @@ const Register =()=>{
     }
 
     return (
-        <div className={"register m-auto flex flex-col shadow-2xl w-max p-4 mt-5 text-black items-center justify-items-start "}>
+        <div className={"register m-auto flex flex-col shadow-2xl w-96 p-4 mt-5 text-black items-center justify-items-start "}>
             <h1 className={"font-bold text-2xl m-2"}>Register</h1>
-            <form className={"flex flex-col w-5/5 gap-3 justify-items-start mb-3 "} onSubmit={(e) => {
+            <form className={"flex flex-col w-80 gap-3 justify-items-start mb-3 "} onSubmit={(e) => {
                 e.preventDefault()
                 setPLoading(true)
                 validate()

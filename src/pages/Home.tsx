@@ -69,10 +69,10 @@ const Home =()=>{
         return <div> Error fetching data</div>
     }
     return(
-        <div className={"flex-col gap-1.5 items-center m-0 align-middle justify-center w-4/5"} style={home}>
+        <div className={"flex-col gap-1.5 items-center m-0 align-middle justify-center w-4/5 scroll-smooth"} style={home}>
             <main className={"rounded-xl p-2"}>
                 <div className={"hero text-center flex align-middle justify-center"}>
-                    <h1 className={"text-5xl font-bold mt-6 w-1/2 "}>The place to find and contribute to open source
+                    <h1 className={"text-5xl font-bold mt-6 w-1/2"}>The place to find and contribute to open source
                         projects you care about</h1>
                 </div>
                 <div className={"flex flex-col w-4/5  mt-10 mb-10  justify-items-start"} style={mainStyles}>
@@ -113,41 +113,7 @@ const Home =()=>{
                     {/*          id={project.id}/>*/}
                     {/*))}*/}
                     <div className={"flex flex-wrap gap-4 w-11/12"}>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={2}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={3}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={4}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={5}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
-                        <Card topic={"new card"} stars={100} title={"oss"} details={"This is a new proj"} id={1}/>
+
                     </div>
 
 

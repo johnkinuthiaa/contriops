@@ -6,7 +6,6 @@ const Login =()=>{
     const [email,setEmail] =useState<string>("")
     const [password,setPassword] =useState<string>("")
     const [error,setError] =useState<string>("")
-    const [confirmPassword,setConfirmPassword] =useState<string>("")
     const[pLoading,setPLoading] =useState<boolean>(false)
 
     const navigate =useNavigate()
@@ -28,20 +27,16 @@ const Login =()=>{
         })
         if(response.ok){
             const data =await response.json()
-            navigate("/home")
+            if(data.statusCode ==200 ){
+                localStorage.setItem("jwt-token",JSON.stringify(data.jwtToken))
+                navigate("/home")
+            }else{
+                return
+            }
 
-            console.log(data)
         }
     })
     const validate =()=>{
-        if(confirmPassword !=password){
-            setTimeout(()=>{
-                setError("")
-            },2000)
-            setError("passwords do not match")
-            setPLoading(false)
-            return
-        }
         const regex= ""
         if(!email.match(regex)){
             setTimeout(()=>{
@@ -55,9 +50,9 @@ const Login =()=>{
     }
     return (
         <div
-            className={"register m-auto flex flex-col shadow-2xl w-max p-4 mt-3 text-black items-center justify-items-start "}>
+            className={"register m-auto flex flex-col shadow-2xl w-96 h-96 p-4 mt-3 text-black items-center justify-items-start "}>
             <h1 className={"font-bold text-2xl m-1"}>Login</h1>
-            <form className={"flex flex-col w-5/5 gap-3 justify-items-start mb-2 "} onSubmit={(e) => {
+            <form className={"flex flex-col w-80 gap-3 justify-items-start mb-2 "} onSubmit={(e) => {
                 e.preventDefault()
                 setPLoading(true)
                 validate()
@@ -77,13 +72,8 @@ const Login =()=>{
                        onChange={(e) => {
                            setPassword(e.target.value)
                        }}/>
-                <input type={"password"} placeholder={"confirm password"}
-                       className={"p-2 border-2 border-gray-600 rounded-2xl"} min={4} max={20} required={true}
-                       onChange={(e) => {
-                           setConfirmPassword(e.target.value)
-                       }}/>
                 <button type={"submit"} className={"button p-2 bg-blue-600 text-white rounded m-0.5 "}>
-                    {pLoading ? <p className={"animate-pulse"}>Loading...</p> : <p>Register</p>}
+                    {pLoading ? <p className={"animate-pulse"}>Loading...</p> : <p>Login</p>}
                 </button>
             </form>
             <p>Dont have an account? <span

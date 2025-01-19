@@ -8,7 +8,7 @@ const Header=()=>{
 
     }
     return(
-        <div className={"header justify-between top-0 p-5 align-middle "} style={headerStyles}>
+        <div className={"header justify-between top-0 p-5 align-middle sticky bg-white  "} style={headerStyles}>
             <div className={"logo__image flex align-middle justify-center"}>
                 <img src={"/src/assets/newLg.png"} alt={"logo"} className={"h-20 w-20 object-cover"}/>
                 <h1 className={"text-6xl font-bold  text-blue-700"}>ContriOp</h1>

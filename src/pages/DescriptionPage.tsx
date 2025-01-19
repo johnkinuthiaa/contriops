@@ -14,12 +14,15 @@ const DescriptionPage =()=>{
     const[aboutProject,setAboutProject] =useState({})
     const[reposUrl,setReposUrl] =useState<string>("")
     const[repos,setRepos] =useState<string[]>([])
-
+    useEffect(()=>{
+        fetchProjectInfo()
+    },[])
     useEffect(()=>{
         fetchOrgRepos()
     },[aboutProject])
-
-    const ENDPOINT ="netflix"
+    const url:string =window.location.href
+    const ENDPOINT:RegExpMatchArray | null=url.match(/[^/]+$/)
+    console.log(ENDPOINT)
     const BASE_URL =`/org/${ENDPOINT}`
     const descPage={
         margin:"0 auto",
@@ -31,17 +34,20 @@ const DescriptionPage =()=>{
     const myHeaders =new Headers()
     myHeaders.append("Content-Type","application/json")
     const fetchProjectInfo =(async ()=>{
-        const results =await octokit.request('GET /orgs/{org}', {
-            org: ENDPOINT,
-            headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
-            },
-            per_page:100
-        })
-        const data = results.data
-        setAboutProject(data)
-        console.log(data)
-        setReposUrl(data.repos_url)
+        if (ENDPOINT) {
+            const results = await octokit.request('GET /orgs/{org}', {
+                org: ENDPOINT[0].trim(),
+                headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                },
+                per_page: 100
+            })
+            const data = results.data
+            setAboutProject(data)
+            console.log(data)
+            setReposUrl(data.repos_url)
+        }
+
 
     })
     const fetchOrgRepos =(async ()=>{
@@ -62,7 +68,7 @@ const DescriptionPage =()=>{
 
 
     return(
-        <div className={"shadow-2xl flex flex-col"} style={descPage}>
+        <div className={"shadow-2xl flex flex-col "} style={descPage}>
             <div className={"flex justify-between"} >
                 <div className={"flex p-3 content-center "}>
                     <img src={aboutProject.avatar_url} alt={aboutProject.login}
